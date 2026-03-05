@@ -1,0 +1,207 @@
+---
+title: 'Administration Guide Template'
+description: 'A comprehensive template for creating administration and system admin documentation'
+icon: 'shield-halved'
+---
+
+## Overview
+
+The Administration Guide template helps you create documentation for system administrators, DevOps teams, and IT professionals responsible for deploying, configuring, and maintaining your software.
+
+<Note>
+Administration guides should be organized by the phases of acquiring, installing, and using the software—not by the order of first-time setup or feature groupings in the UI.
+</Note>
+
+## When to Use This Template
+
+Use the Administration Guide template when you need to document:
+
+- System installation and deployment procedures
+- Configuration and scaling guidance
+- Security architecture and permissions management
+- Monitoring, logging, and troubleshooting
+- User and organization management
+- Upgrade and maintenance procedures
+
+## How to Organize It
+
+<Warning>
+**Avoid these common mistakes:**
+- Don't organize by the order of first-time setup steps (makes it hard to find settings later)
+- Don't organize by how features are grouped in the software UI
+- These approaches make it difficult for users to find features and for writers to add new content
+</Warning>
+
+Instead, organize by **lifecycle phases** that administrators will return to repeatedly throughout their use of the software.
+
+## Template Structure
+
+<Steps>
+  <Step title="Product Overview">
+    Provide a high-level introduction to the product from an administrator's perspective:
+    - What the software does
+    - Key architectural concepts
+    - Administrator's role and responsibilities
+  </Step>
+
+  <Step title="Planning">
+    Help administrators understand the system before deployment:
+    - **Architecture**: System components and how they interact
+    - **System design**: Deployment patterns and topology options
+    - **Security**: Authentication, authorization, encryption, and compliance
+    - **Capacity planning**: Resource requirements and sizing guidance
+  </Step>
+
+  <Step title="Installation">
+    Guide administrators through the deployment process:
+    - **System requirements**: Hardware, software, and network prerequisites
+    - **Supported platforms**: Operating systems, cloud providers, containers
+    - **Deploying**: Step-by-step installation instructions
+    - **Upgrading**: Migration paths and upgrade procedures
+    - **Uninstalling**: Clean removal procedures if needed
+  </Step>
+
+  <Step title="Configuring">
+    Document configuration options and best practices:
+    - Initial configuration steps
+    - **Scaling**: Horizontal and vertical scaling options
+    - Performance tuning
+    - Integration with external systems
+    - Configuration file reference
+  </Step>
+
+  <Step title="Monitoring">
+    Explain how to track system health and performance:
+    - **Monitoring tools**: Built-in dashboards and third-party integrations
+    - **Logs**: Log locations, formats, and rotation policies
+    - **Automation of monitoring**: Setting up alerts and automated responses
+    - Metrics and KPIs to track
+    - Health check endpoints
+  </Step>
+
+  <Step title="Managing">
+    Document ongoing administrative tasks:
+    - **Access and permissions**: Role-based access control (RBAC)
+    - **Creating accounts**: User provisioning workflows
+    - **Organizations**: Multi-tenancy and organization management
+    - **Users and groups**: Managing teams and departments
+    - Backup and restore procedures
+    - Data retention policies
+  </Step>
+
+  <Step title="Troubleshooting">
+    Help administrators diagnose and resolve issues:
+    - Common problems and solutions
+    - Diagnostic procedures
+    - Log analysis techniques
+    - How to collect support information
+    - Known issues and workarounds
+  </Step>
+</Steps>
+
+## Code Example
+
+Here's an example of documenting a configuration section:
+
+```markdown
+## Configuring Database Connections
+
+Edit the `config/database.yml` file to configure your database connection:
+
+```yaml
+production:
+  adapter: postgresql
+  host: db.example.com
+  port: 5432
+  database: myapp_production
+  username: admin
+  password: ${DB_PASSWORD}
+  pool: 20
+  timeout: 5000
+```
+
+**Configuration Parameters:**
+
+| Parameter | Description | Default | Required |
+|-----------|-------------|---------|----------|
+| `host` | Database server hostname | `localhost` | Yes |
+| `port` | Database port number | `5432` | No |
+| `pool` | Connection pool size | `5` | No |
+| `timeout` | Connection timeout (ms) | `5000` | No |
+
+<Note>
+Use environment variables for sensitive values like passwords. Never commit credentials to version control.
+</Note>
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Task-Oriented" icon="list-check">
+    Organize content by what administrators need to accomplish, not by menu structure or setup order.
+  </Card>
+  
+  <Card title="Safety First" icon="shield">
+    Highlight destructive operations, security implications, and backup recommendations.
+  </Card>
+  
+  <Card title="Provide Context" icon="lightbulb">
+    Explain the "why" behind configurations, not just the "how." Help admins make informed decisions.
+  </Card>
+  
+  <Card title="Include Examples" icon="code">
+    Show realistic configuration examples and common deployment scenarios.
+  </Card>
+</CardGroup>
+
+## Real-World Examples
+
+Learn from these excellent administration guides:
+
+<CardGroup cols={2}>
+  <Card title="Atlassian Crowd" icon="link" href="https://confluence.atlassian.com/crowd/administration-guide-16482404.html">
+    Enterprise identity management administration guide
+  </Card>
+  
+  <Card title="Mattermost" icon="link" href="https://docs.mattermost.com/guides/administrator.html">
+    Open-source team collaboration platform admin guide
+  </Card>
+  
+  <Card title="Jamf Connect" icon="link" href="https://docs.jamf.com/jamf-connect/1.17.0/administrator-guide/About_this_Guide.html">
+    macOS identity and access management
+  </Card>
+  
+  <Card title="Intel ASM" icon="link" href="https://www.intel.com/content/dam/support/us/en/documents/memory-and-storage/ssd-software/ASM-Win.pdf">
+    Storage system administrator guide (PDF)
+  </Card>
+</CardGroup>
+
+## Tips for Success
+
+<Accordion title="Keep it maintainable">
+  - Use consistent formatting and structure
+  - Link related sections together
+  - Version your documentation alongside the product
+  - Update troubleshooting sections based on support tickets
+</Accordion>
+
+<Accordion title="Make it searchable">
+  - Use clear, descriptive headings
+  - Include error messages verbatim so users can search for them
+  - Add keywords administrators might search for
+  - Create a comprehensive index or glossary
+</Accordion>
+
+<Accordion title="Test with real admins">
+  - Have IT professionals review your documentation
+  - Watch administrators perform tasks using your guide
+  - Collect feedback from support teams
+  - Update based on common questions and confusion points
+</Accordion>
+
+<Accordion title="Consider different audiences">
+  - Some admins are experts, others are beginners
+  - Provide both quick reference and detailed explanations
+  - Include architectural diagrams for visual learners
+  - Offer troubleshooting decision trees
+</Accordion>

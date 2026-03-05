@@ -1,0 +1,132 @@
+---
+title: 'The Meta-Template'
+description: 'A framework for creating new documentation templates'
+icon: 'diagram-project'
+---
+
+<Note>
+This meta-template is primarily for maintainers and contributors who want to create new documentation templates. Before contributing, please open an issue to discuss your proposed template.
+</Note>
+
+## What is the Meta-Template?
+
+The meta-template is an outline that guides the creation of new documentation templates. It ensures consistency across all templates in this collection and helps template creators think through the essential elements that make documentation effective.
+
+## Why Use This Framework?
+
+When creating a new template, you need to consider:
+- **Purpose and audience** - Who will use this template and why?
+- **Critical content** - What information must be included?
+- **User journey** - What knowledge and tasks are prerequisite, and what comes next?
+- **Quality standards** - How do we ensure this template produces effective documentation?
+
+## Template Structure
+
+<Steps>
+
+<Step title="Define the Template Summary">
+
+Start by clearly articulating the template's purpose:
+
+- **Purpose of the document** - What is this documentation meant to achieve?
+- **Who it is for** - Who is the primary audience?
+- **When and why is it needed?** - What justifies this as a critical document in the minimum viable doc set?
+
+This summary helps both template creators and users understand when to use this template.
+
+</Step>
+
+<Step title="Structure the Contents">
+
+### Prerequisites
+
+Every template should address these questions:
+
+- What knowledge do readers need before they begin?
+- What tasks must be completed? (installation, environment configuration, etc.)
+- What will this document help the reader accomplish?
+- Where can readers get necessary resources? (tokens, API keys, credentials, etc.)
+
+<Warning>
+Clearly stating prerequisites prevents user frustration and reduces support burden. Don't assume knowledge—make it explicit.
+</Warning>
+
+### Template Body
+
+The body structure depends on the document type:
+
+- **Reference docs** - Exhaustive listings with consistent formatting
+- **Quickstarts** - Step-by-step workflows
+- **Overviews** - Conceptual explanations and high-level architecture
+- **Setup guides** - Installation and configuration procedures
+
+### Postrequisites
+
+Help readers understand what comes next:
+
+- What can they do now that they've completed this document?
+- What should they read next?
+- What are the logical next steps in their journey?
+
+</Step>
+
+<Step title="Provide Supporting Resources">
+
+### More Information
+
+Include:
+
+- **Links to good examples** - Show real-world implementations
+- **Further reading** - Additional resources, bibliographic citations, and supporting documentation
+
+This helps users see the template in action and deepen their understanding.
+
+</Step>
+
+</Steps>
+
+## Creating Your Template
+
+<CardGroup cols={2}>
+
+<Card title="Start with the Summary" icon="bullseye">
+Before writing any content, complete the template summary section. This clarifies your thinking and ensures the template serves a real need.
+</Card>
+
+<Card title="Think About the User Journey" icon="route">
+Consider what the user knows before they arrive, what they'll learn, and where they'll go next. Documentation doesn't exist in isolation.
+</Card>
+
+<Card title="Be Specific About Prerequisites" icon="clipboard-check">
+Don't leave users guessing. Explicitly state required knowledge, tools, and preparation steps.
+</Card>
+
+<Card title="Include Examples" icon="code">
+Show, don't just tell. Good examples make templates immediately useful and reduce ambiguity.
+</Card>
+
+</CardGroup>
+
+## Related Projects
+
+<Note>
+This meta-template was the predecessor to one under construction at **The Good Docs Project**. Their template will be slightly longer and includes additional details.
+</Note>
+
+Learn more about The Good Docs Project:
+- Website: [thegooddocsproject.dev](https://thegooddocsproject.dev/)
+- GitHub: [github.com/thegooddocsproject](https://github.com/thegooddocsproject)
+
+## Next Steps
+
+<CardGroup cols={2}>
+
+<Card title="Review Existing Templates" href="/templates/quickstart" icon="book">
+See how existing templates apply this framework
+</Card>
+
+<Card title="Contribute" href="/contributing" icon="code-pull-request">
+Learn how to propose and submit new templates
+</Card>
+
+</CardGroup>

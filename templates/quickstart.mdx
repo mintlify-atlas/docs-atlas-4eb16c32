@@ -1,0 +1,398 @@
+---
+title: Quickstart Template
+description: Get users to their first successful API call as quickly as possible
+icon: 'rocket'
+---
+
+# API Quickstart Template
+
+The Quickstart is your "show, don't tell" document. It's a clear, step-by-step guide that gets users from zero to their first successful API call in the simplest way possible. This is where you prove that your API is easy to use.
+
+<Note>
+A good quickstart demonstrates benefits through action. Users should see value quickly, not read about it theoretically.
+</Note>
+
+## When to Use This Template
+
+Use this template when you need to:
+- Help new users get started with your API quickly
+- Show the easiest path to a working integration
+- Demonstrate core functionality with minimal setup
+- Build user confidence through early success
+- Provide copy-paste examples that actually work
+
+## What Makes a Good Quickstart
+
+<CardGroup cols={2}>
+  <Card title="Clear & Concise" icon="file-lines">
+    Numbered steps that are easy to follow
+  </Card>
+  <Card title="Simplest Path" icon="route">
+    Show the easiest way, not the most optimized
+  </Card>
+  <Card title="Working Code" icon="code">
+    Copy-paste examples that users can run immediately
+  </Card>
+  <Card title="Quick Wins" icon="trophy">
+    Users see results within 15 minutes or less
+  </Card>
+</CardGroup>
+
+## What to Include
+
+<AccordionGroup>
+  <Accordion title="Clear Goal Statement" icon="bullseye">
+    **Start by telling users what they'll accomplish.**
+    
+    Don't make users guess what the quickstart will teach them. State the outcome upfront.
+    
+    ````md
+    # Quickstart: Process Your First Payment
+    
+    In this guide, you'll learn how to:
+    - Set up authentication with API keys
+    - Create a payment intent
+    - Charge a test credit card
+    - Handle the response
+    
+    **Time to complete**: ~10 minutes
+    ````
+  </Accordion>
+
+  <Accordion title="Prerequisites" icon="clipboard-check">
+    **List everything users need before starting.**
+    
+    Remove friction by telling users exactly what they need upfront.
+    
+    ````md
+    ## Before You Begin
+    
+    <Check>
+    - A free API account ([sign up here](/signup))
+    - Your API key from the [dashboard](/dashboard)
+    - Node.js 18+ or Python 3.8+ installed
+    - Basic familiarity with REST APIs
+    </Check>
+    
+    <Info>
+    New to REST APIs? Check out our [API Basics](/docs/api-basics) guide first.
+    </Info>
+    ````
+  </Accordion>
+
+  <Accordion title="Installation & Setup" icon="download">
+    **Get users set up quickly.**
+    
+    Make this as simple as possible. Link to detailed setup guides instead of including everything inline.
+    
+    ````md
+    ## Step 1: Install the SDK
+    
+    <CodeGroup>
+    ```bash npm
+    npm install @yourapi/sdk
+    ```
+    
+    ```bash yarn
+    yarn add @yourapi/sdk
+    ```
+    
+    ```bash pip
+    pip install yourapi
+    ```
+    </CodeGroup>
+    
+    <Note>
+    Don't have an API key yet? [Generate one in your dashboard](/dashboard/keys).
+    </Note>
+    ````
+  </Accordion>
+
+  <Accordion title="Step-by-Step Instructions" icon="list-ol">
+    **Break the task into logical, numbered steps.**
+    
+    Each step should be self-contained and include all necessary information.
+    
+    <Steps>
+      <Step title="One action per step">
+        Don't combine multiple operations in a single step
+      </Step>
+      <Step title="Show the code first">
+        Put the code example before the explanation
+      </Step>
+      <Step title="Explain with comments">
+        Use inline comments to annotate the example
+      </Step>
+      <Step title="Show expected output">
+        Tell users what they should see when it works
+      </Step>
+    </Steps>
+    
+    ````md
+    ## Step 2: Initialize the Client
+    
+    Create a new file called `app.js` and add:
+    
+    ```javascript
+    const YourAPI = require('@yourapi/sdk');
+    
+    // Initialize with your API key
+    const client = new YourAPI({
+      apiKey: 'your_api_key_here',
+      environment: 'sandbox' // Use 'production' when ready to go live
+    });
+    ```
+    
+    <Warning>
+    Never commit your API key to version control. Use environment variables in production.
+    </Warning>
+    ````
+  </Accordion>
+
+  <Accordion title="Working Code Examples" icon="code">
+    **Provide complete, copy-pasteable examples.**
+    
+    Users should be able to copy your code and run it without modification.
+    
+    <Warning>
+    Test every code example before publishing. Broken examples destroy user trust.
+    </Warning>
+    
+    ````md
+    ## Step 3: Create a Payment
+    
+    Now let's process a test payment:
+    
+    ```javascript
+    async function processPayment() {
+      try {
+        // Create a payment intent
+        const payment = await client.payments.create({
+          amount: 2000,        // Amount in cents ($20.00)
+          currency: 'usd',
+          paymentMethod: {
+            type: 'card',
+            card: {
+              number: '4242424242424242',  // Test card
+              expMonth: 12,
+              expYear: 2025,
+              cvc: '123'
+            }
+          },
+          description: 'Test payment'
+        });
+        
+        console.log('Payment successful!', payment.id);
+        return payment;
+      } catch (error) {
+        console.error('Payment failed:', error.message);
+      }
+    }
+    
+    processPayment();
+    ```
+    
+    Run the code:
+    ```bash
+    node app.js
+    ```
+    
+    You should see output like:
+    ```
+    Payment successful! pay_1A2B3C4D5E6F
+    ```
+    ````
+  </Accordion>
+
+  <Accordion title="Expected Results" icon="check">
+    **Show users what success looks like.**
+    
+    Display example output, responses, or UI changes so users can verify they're on track.
+    
+    ````md
+    ## What You Should See
+    
+    If everything worked correctly:
+    
+    <Check>
+    ✓ No error messages in the console
+    ✓ A payment ID returned (starts with `pay_`)
+    ✓ Payment appears in your [dashboard transactions](/dashboard/transactions)
+    </Check>
+    
+    Example successful response:
+    
+    ```json
+    {
+      "id": "pay_1A2B3C4D5E6F",
+      "status": "succeeded",
+      "amount": 2000,
+      "currency": "usd",
+      "created": 1640000000
+    }
+    ```
+    ````
+  </Accordion>
+
+  <Accordion title="Troubleshooting Common Issues" icon="wrench">
+    **Address the most common problems users encounter.**
+    
+    Anticipate what will go wrong and provide solutions.
+    
+    ````md
+    ## Troubleshooting
+    
+    <AccordionGroup>
+      <Accordion title="Error: Invalid API key">
+        Make sure you copied your API key correctly from the dashboard. 
+        Check for extra spaces or missing characters.
+        
+        Sandbox keys start with `sk_test_`, production keys with `sk_live_`.
+      </Accordion>
+      
+      <Accordion title="Error: Card declined">
+        You're using a real card number in sandbox mode. Use test cards:
+        - Success: `4242424242424242`
+        - Decline: `4000000000000002`
+        
+        See [all test cards](/docs/testing#test-cards).
+      </Accordion>
+      
+      <Accordion title="Connection timeout">
+        Check your internet connection and firewall settings. 
+        Our API requires outbound HTTPS on port 443.
+      </Accordion>
+    </AccordionGroup>
+    ````
+  </Accordion>
+
+  <Accordion title="Next Steps" icon="arrow-right">
+    **Guide users to learn more.**
+    
+    Once users succeed, show them where to go next.
+    
+    **Example:**
+    ```md
+    ## Next Steps
+    
+    Now that you've made your first API call, explore these resources:
+    
+    - [Handle Webhooks](/docs/webhooks) - Listen for payment events asynchronously
+    - [Set Up Refunds](/docs/refunds) - Process refunds and cancellations
+    - [Go to Production](/docs/production) - Deploy with production API keys
+    - [API Reference](/reference) - Browse all available endpoints
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## What NOT to Include
+
+<Warning>
+Keep your quickstart focused. These belong elsewhere:
+</Warning>
+
+- **Complete reference documentation** → Move to the API Reference
+- **Advanced configuration options** → Create dedicated guides
+- **Overview and background info** → Belongs in the Overview page
+- **Production best practices** → Create a "Going to Production" guide
+- **Every possible scenario** → Focus on the happy path only
+
+## Template Structure
+
+```md
+# Quickstart: [Specific Task]
+
+[Brief description of what users will accomplish]
+**Time to complete**: ~[X] minutes
+
+## Before You Begin
+
+[Prerequisites list]
+
+## Step 1: [Action]
+
+[Instructions]
+
+```[language]
+[code example]
+```
+
+[Explanation]
+
+## Step 2: [Action]
+
+[Continue with numbered steps...]
+
+## Expected Results
+
+[What success looks like]
+
+## Troubleshooting
+
+[Common issues and solutions]
+
+## Next Steps
+
+[Links to related docs]
+```
+
+## Real-World Examples
+
+<CardGroup cols={2}>
+  <Card title="Jekyll Quickstart" icon="gem" href="https://jekyllrb.com/docs/">
+    Excellent quickstart with setup linked separately in the first step. Clean, focused, and easy to follow.
+  </Card>
+  <Card title="GitHub API Quickstarts" icon="github" href="https://developer.github.com/apps/quickstart-guides/">
+    Multiple focused quickstarts, each demonstrating a specific feature or workflow.
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<Steps>
+  <Step title="Test everything">
+    Every code example must be tested and working. Outdated examples frustrate users and damage trust.
+  </Step>
+  
+  <Step title="Use the simplest approach">
+    Show the easiest way to accomplish the task, even if it's not the most efficient. Advanced optimization comes later.
+  </Step>
+  
+  <Step title="Provide complete examples">
+    Users should be able to copy and paste without modification. Don't use placeholders like `[YOUR_VALUE]` unless absolutely necessary.
+  </Step>
+  
+  <Step title="Keep it brief">
+    Aim for completion in 10-15 minutes. If it takes longer, you're including too much.
+  </Step>
+  
+  <Step title="Show, don't tell">
+    Let users experience the API's value by actually using it, not by reading descriptions of features.
+  </Step>
+  
+  <Step title="Use multiple languages">
+    If you support multiple languages, provide examples in at least the top 2-3 (e.g., JavaScript, Python, Ruby).
+  </Step>
+  
+  <Step title="Link to authentication docs">
+    Don't explain authentication in detail—link to your setup/authentication guide and provide a quick example.
+  </Step>
+</Steps>
+
+<Info>
+The quickstart is often the make-or-break moment for user adoption. A user who successfully completes your quickstart is much more likely to become a long-term user.
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Overview Template" icon="map" href="/templates/overview">
+    Provide context about what your API does
+  </Card>
+  <Card title="Setup Template" icon="gear" href="/templates/setup">
+    Detailed authentication and configuration
+  </Card>
+  <Card title="Reference Template" icon="book" href="/templates/reference">
+    Comprehensive endpoint documentation
+  </Card>
+</CardGroup>

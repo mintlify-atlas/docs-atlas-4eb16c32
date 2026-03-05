@@ -1,0 +1,511 @@
+---
+title: 'Integrations & Plugins Template'
+description: 'Template for documenting integrations, plugins, and third-party extensions'
+icon: 'puzzle-piece'
+---
+
+## Overview
+
+An integration (or plugin) is a piece of code provided to a cloud service—like GitHub Actions, GitLab CI, Jenkins, or other platforms—that allows customers to easily deploy and run your software in an automated way, often without writing custom scripts.
+
+<Note>
+This template helps you document integrations that extend your product or enable your product to work with third-party services.
+</Note>
+
+## When to Use This Template
+
+Use the Integrations & Plugins template when documenting:
+
+- GitHub Actions, GitLab runners, or CI/CD plugins
+- IDE extensions and editor plugins
+- Cloud marketplace integrations (AWS, Azure, GCP)
+- Third-party platform extensions (Slack apps, Jira plugins, etc.)
+- API integrations and SDKs
+- Webhook configurations
+- Browser extensions
+
+## Template Structure
+
+<Steps>
+  <Step title="Introduction & Overview">
+    Set the stage for what the integration does and why users should use it.
+    
+    **What to include:**
+    - What does this integration do?
+    - What problem does it solve?
+    - What value does it provide?
+    - Who is it for?
+    
+    **Example:**
+    ```markdown
+    The Acme Security GitHub Action automatically scans your code for
+    vulnerabilities on every pull request, providing instant feedback
+    to developers before code reaches production.
+    ```
+  </Step>
+
+  <Step title="Workflow Overview">
+    Provide high-level understanding before detailed instructions.
+    
+    **Download and installation workflow:**
+    - Ordered list of high-level steps
+    - Not complete instructions—just the big picture
+    - Help users understand what they're getting into
+    
+    **Configuration workflow:**
+    - Ordered list of high-level steps
+    - What decisions will they need to make?
+    - What information will they need to gather?
+  </Step>
+
+  <Step title="Download & Installation">
+    Detailed step-by-step instructions for getting the integration running.
+    
+    **Cover:**
+    - Where to find the integration (marketplace, registry, etc.)
+    - Prerequisites and dependencies
+    - Installation commands or procedures
+    - Verification steps
+    - First-time setup
+  </Step>
+
+  <Step title="Configuration">
+    Explain how to configure the plugin for different use cases.
+    
+    **Include:**
+    - Configuration file format and location
+    - Required vs. optional settings
+    - Common configuration scenarios
+    - Environment variables
+    - Authentication and credentials
+  </Step>
+
+  <Step title="Reference Documentation">
+    Provide technical reference material users will need.
+    
+    **Include:**
+    - Error messages and their meanings
+    - Configuration file schema
+    - API reference (if applicable)
+    - Support and compatibility information
+    - Version requirements
+    - Platform compatibility
+    - Required roles and permissions
+    - Access token requirements
+  </Step>
+
+  <Step title="Release Notes">
+    Keep users informed about changes and updates.
+    
+    **Document:**
+    - New features and improvements
+    - Bug fixes
+    - Breaking changes
+    - Deprecations
+    - Upgrade instructions
+  </Step>
+</Steps>
+
+## Complete Example: GitHub Action
+
+Here's a full example of integration documentation:
+
+````markdown
+# Acme Security Scanner GitHub Action
+
+## Overview
+
+The Acme Security Scanner GitHub Action automatically analyzes your code for
+security vulnerabilities, secrets, and compliance issues on every push and
+pull request.
+
+**Benefits:**
+- Catch security issues before they reach production
+- Automated scanning with no manual intervention
+- Detailed reports with remediation guidance
+- Integrates seamlessly with GitHub's security features
+
+**What it does:**
+- Scans code for known vulnerabilities
+- Detects hardcoded secrets and credentials
+- Checks for license compliance issues
+- Fails builds when critical issues are found
+
+## Quick Start
+
+### Installation Workflow
+
+1. Add the action to your GitHub workflow file
+2. Configure your Acme API token as a GitHub secret
+3. Set your scanning preferences
+4. Commit and push to trigger your first scan
+
+### Configuration Workflow
+
+1. Choose what to scan (code, dependencies, containers)
+2. Set severity thresholds for failing builds
+3. Configure notification preferences
+4. Define exclude patterns for files to skip
+
+## Installation
+
+<Steps>
+  <Step title="Prerequisites">
+    Before you begin, ensure you have:
+    
+    - An Acme Security account ([sign up free](https://acme.example.com/signup))
+    - An API token from your Acme dashboard
+    - Admin or write access to your GitHub repository
+  </Step>
+
+  <Step title="Add GitHub Secret">
+    Store your Acme API token securely:
+    
+    1. Go to your repository **Settings** > **Secrets and variables** > **Actions**
+    2. Click **New repository secret**
+    3. Name it `ACME_API_TOKEN`
+    4. Paste your API token as the value
+    5. Click **Add secret**
+  </Step>
+
+  <Step title="Create Workflow File">
+    Create `.github/workflows/security-scan.yml` in your repository:
+    
+    ```yaml
+    name: Security Scan
+    
+    on:
+      push:
+        branches: [ main, develop ]
+      pull_request:
+        branches: [ main ]
+    
+    jobs:
+      security-scan:
+        runs-on: ubuntu-latest
+        
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v3
+          
+          - name: Run Acme Security Scanner
+            uses: acme-security/scanner-action@v2
+            with:
+              api-token: ${{ secrets.ACME_API_TOKEN }}
+              severity-threshold: high
+              fail-on-issues: true
+    ```
+  </Step>
+
+  <Step title="Commit and Push">
+    Commit the workflow file and push to trigger your first scan:
+    
+    ```bash
+    git add .github/workflows/security-scan.yml
+    git commit -m "Add Acme security scanning"
+    git push
+    ```
+  </Step>
+
+  <Step title="Verify">
+    Check that the action is running:
+    
+    1. Go to your repository's **Actions** tab
+    2. You should see the "Security Scan" workflow running
+    3. Click on it to view detailed results
+  </Step>
+</Steps>
+
+<Note>
+Your first scan may take a few minutes depending on repository size.
+</Note>
+
+## Configuration
+
+### Basic Configuration
+
+The action accepts these inputs:
+
+```yaml
+- uses: acme-security/scanner-action@v2
+  with:
+    # Required: Your Acme API token
+    api-token: ${{ secrets.ACME_API_TOKEN }}
+    
+    # Optional: Minimum severity to report (low|medium|high|critical)
+    severity-threshold: 'high'
+    
+    # Optional: Fail the build if issues are found
+    fail-on-issues: true
+    
+    # Optional: Scan specific paths
+    scan-path: './src'
+    
+    # Optional: Exclude patterns
+    exclude: '**/*.test.js,**/vendor/**'
+    
+    # Optional: Output format (text|json|sarif)
+    output-format: 'sarif'
+```
+
+### Advanced Configuration
+
+Create an `acme-security.yml` config file in your repository root:
+
+```yaml
+# Acme Security Scanner Configuration
+
+scan:
+  # What to scan
+  targets:
+    - source-code
+    - dependencies
+    - containers
+  
+  # Paths to include
+  include:
+    - 'src/**'
+    - 'lib/**'
+  
+  # Paths to exclude
+  exclude:
+    - '**/*.test.js'
+    - '**/node_modules/**'
+    - '**/vendor/**'
+
+# Severity levels
+severity:
+  # Fail build on these severities
+  fail-on:
+    - critical
+    - high
+  
+  # Report but don't fail
+  warn-on:
+    - medium
+    - low
+
+# Issue types to scan for
+issue-types:
+  - secrets
+  - vulnerabilities
+  - license-compliance
+  - code-quality
+
+# Notifications
+notifications:
+  # Post results as PR comments
+  pr-comments: true
+  
+  # Create GitHub issues for critical findings
+  create-issues: true
+```
+
+### Common Scenarios
+
+<Accordion title="Scan only on pull requests">
+```yaml
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: acme-security/scanner-action@v2
+        with:
+          api-token: ${{ secrets.ACME_API_TOKEN }}
+```
+</Accordion>
+
+<Accordion title="Scan but never fail the build">
+```yaml
+- uses: acme-security/scanner-action@v2
+  with:
+    api-token: ${{ secrets.ACME_API_TOKEN }}
+    fail-on-issues: false
+  continue-on-error: true
+```
+</Accordion>
+
+<Accordion title="Upload results to GitHub Security">
+```yaml
+- uses: acme-security/scanner-action@v2
+  with:
+    api-token: ${{ secrets.ACME_API_TOKEN }}
+    output-format: sarif
+
+- name: Upload SARIF results
+  uses: github/codeql-action/upload-sarif@v2
+  with:
+    sarif_file: acme-security-results.sarif
+```
+</Accordion>
+
+## Reference
+
+### Configuration Schema
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `api-token` | string | Yes | - | Your Acme API token |
+| `severity-threshold` | string | No | `medium` | Minimum severity to report |
+| `fail-on-issues` | boolean | No | `true` | Fail build when issues found |
+| `scan-path` | string | No | `.` | Path to scan |
+| `exclude` | string | No | - | Comma-separated exclude patterns |
+| `output-format` | string | No | `text` | Output format: text, json, or sarif |
+
+### Error Messages
+
+<Accordion title="Authentication failed">
+**Error:** `API token is invalid or expired`
+
+**Solution:**
+1. Verify your token in the Acme dashboard
+2. Regenerate if necessary
+3. Update the `ACME_API_TOKEN` secret in GitHub
+</Accordion>
+
+<Accordion title="Rate limit exceeded">
+**Error:** `Rate limit exceeded, please try again later`
+
+**Solution:**
+- Free tier: 100 scans/month
+- Pro tier: 1,000 scans/month
+- Upgrade your plan or wait for rate limit reset
+</Accordion>
+
+<Accordion title="Invalid configuration">
+**Error:** `Configuration file is malformed`
+
+**Solution:**
+- Validate your YAML syntax
+- Check that all values match the schema
+- Review the configuration reference above
+</Accordion>
+
+### Support & Compatibility
+
+**Requirements:**
+- GitHub Actions runner (ubuntu-latest, windows-latest, or macos-latest)
+- Valid Acme Security account and API token
+- Repository permissions: `read` for code, `write` for issues/PRs
+
+**Supported Languages:**
+- JavaScript/TypeScript
+- Python
+- Java
+- Go
+- Ruby
+- PHP
+- C/C++
+- .NET/C#
+
+**Version Compatibility:**
+- Action v2.x: GitHub Actions runner v2.285.0+
+- Action v1.x: All GitHub Actions runners (legacy)
+
+## Release Notes
+
+### v2.1.0 (2026-03-01)
+
+**New Features:**
+- Added support for container image scanning
+- SARIF output format for GitHub Security integration
+- Configurable PR comments with issue summaries
+
+**Improvements:**
+- 40% faster scanning on large repositories
+- Better detection of false positives
+- Enhanced remediation guidance
+
+**Bug Fixes:**
+- Fixed issue with exclude patterns on Windows runners
+- Corrected severity filtering for dependency issues
+
+### v2.0.0 (2026-01-15)
+
+**Breaking Changes:**
+- Renamed `token` parameter to `api-token`
+- Changed default `severity-threshold` from `low` to `medium`
+- Removed deprecated `ignore-paths` parameter (use `exclude` instead)
+
+**Migration Guide:**
+Update your workflow file:
+```yaml
+# Old (v1.x)
+- uses: acme-security/scanner-action@v1
+  with:
+    token: ${{ secrets.ACME_TOKEN }}
+    ignore-paths: 'test/'
+
+# New (v2.x)
+- uses: acme-security/scanner-action@v2
+  with:
+    api-token: ${{ secrets.ACME_API_TOKEN }}
+    exclude: 'test/**'
+```
+````
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Show the Value First" icon="star">
+    Lead with benefits and use cases. Technical details come after users understand why they should use it.
+  </Card>
+  
+  <Card title="Provide Complete Examples" icon="code">
+    Show working, copy-paste-ready examples. Don't just list parameters—show them in action.
+  </Card>
+  
+  <Card title="Document Prerequisites" icon="list-check">
+    List everything users need before starting: accounts, tokens, permissions, dependencies.
+  </Card>
+  
+  <Card title="Cover Common Scenarios" icon="map">
+    Document the most common use cases as separate, complete examples.
+  </Card>
+</CardGroup>
+
+## Tips for Integration Docs
+
+<Warning>
+**Don't assume users know the platform**
+
+Not everyone is a GitHub Actions expert or Jenkins guru. Provide enough context and links to platform documentation.
+</Warning>
+
+<Accordion title="Test your instructions">
+- Follow your own documentation step-by-step
+- Test on a fresh account/repository
+- Have someone unfamiliar with the integration try it
+- Fix any confusing or missing steps
+</Accordion>
+
+<Accordion title="Include troubleshooting">
+- Document common error messages
+- Provide solutions, not just descriptions
+- Link to support resources
+- Show how to enable debug/verbose logging
+</Accordion>
+
+<Accordion title="Keep compatibility info current">
+- Clearly state version requirements
+- Maintain a compatibility matrix if needed
+- Document breaking changes prominently
+- Provide migration guides for major updates
+</Accordion>
+
+<Accordion title="Link to external resources">
+- Platform documentation (GitHub Actions, GitLab CI, etc.)
+- Your main product documentation
+- API documentation
+- Community forums or support channels
+- Example repositories
+</Accordion>
+
+<Note>
+Well-documented integrations have higher adoption rates. Invest in clear, comprehensive documentation to maximize usage.
+</Note>

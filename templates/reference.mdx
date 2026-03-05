@@ -1,0 +1,518 @@
+---
+title: Reference Template
+description: Document every endpoint, parameter, and response field exhaustively
+icon: 'book'
+---
+
+# API Reference Template
+
+The API Reference is the foundation of your API documentation. It's a comprehensive, exhaustive listing of every endpoint, parameter, and response field. While guides show users how to accomplish tasks, the reference tells them exactly what's possible.
+
+<Note>
+All users will eventually need the reference documentation to make full use of your API. This is where accuracy and completeness matter most.
+</Note>
+
+## When to Use This Template
+
+Use this template when you need to:
+- Document every endpoint in your API
+- Provide a complete specification of parameters and responses
+- Give users a searchable reference for all API capabilities
+- Ensure developers can find every detail they need
+- Create the source of truth for API behavior
+
+## Why Reference Documentation Matters
+
+You might offer quickstarts and guides for common tasks, but users will always need the reference to:
+- Discover less common parameters and options
+- Understand exact data types and validation rules
+- Look up error codes and response structures
+- Find edge cases and optional behaviors
+- Build complex integrations beyond basic examples
+
+<Warning>
+Incomplete reference documentation forces users to guess, experiment, or contact support. Complete documentation saves everyone time.
+</Warning>
+
+## Structure & Organization
+
+<AccordionGroup>
+  <Accordion title="Organizing Endpoints" icon="folder-tree">
+    **How should you organize your reference entries?**
+    
+    Choose an organization scheme that matches how users think about your API:
+    
+    <Tabs>
+      <Tab title="By Resource">
+        Group endpoints by the resource they operate on:
+        
+        ````md
+        ## Payments
+        - POST /payments
+        - GET /payments/:id
+        - PATCH /payments/:id
+        - DELETE /payments/:id
+        
+        ## Customers
+        - POST /customers
+        - GET /customers/:id
+        - LIST /customers
+        ````
+      </Tab>
+      
+      <Tab title="By Function">
+        Group by what users are trying to accomplish:
+        
+        ````md
+        ## Processing Payments
+        - Create payment
+        - Capture payment
+        - Refund payment
+        
+        ## Managing Customers
+        - Create customer
+        - Update customer
+        - Delete customer
+        ````
+      </Tab>
+      
+      <Tab title="Alphabetically">
+        Simple alphabetical listing by endpoint name:
+        
+        ````md
+        - Cancel Subscription
+        - Create Customer
+        - Create Payment
+        - Delete Customer
+        - Get Payment
+        ````
+      </Tab>
+    </Tabs>
+    
+    <Tip>
+    Most APIs use resource-based organization because it matches REST conventions and is easy to navigate.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Anatomy of a Reference Entry" icon="microscope">
+    **What should every endpoint entry include?**
+    
+    A complete reference entry requires these components:
+    
+    <Steps>
+      <Step title="HTTP Method & Endpoint">
+        The request type and URL path
+      </Step>
+      <Step title="Description">
+        What the endpoint does and when to use it
+      </Step>
+      <Step title="Path Parameters">
+        Variables in the URL path (e.g., `:id`, `:customerId`)
+      </Step>
+      <Step title="Query Parameters">
+        Optional filters and options in the URL query string
+      </Step>
+      <Step title="Request Body">
+        The JSON or form data sent with POST/PATCH requests
+      </Step>
+      <Step title="Request Example">
+        A working example that users can copy and paste
+      </Step>
+      <Step title="Response Schema">
+        Structure of the successful response
+      </Step>
+      <Step title="Response Example">
+        Sample JSON response
+      </Step>
+      <Step title="Error Responses">
+        Common error codes and what they mean
+      </Step>
+    </Steps>
+  </Accordion>
+</AccordionGroup>
+
+## What to Include for Each Endpoint
+
+<AccordionGroup>
+  <Accordion title="HTTP Method & URL" icon="link">
+    **Show the exact method and endpoint path.**
+    
+    Make it immediately clear what request to make.
+    
+    ````md
+    ## Create a Payment
+    
+    ```http
+    POST https://api.example.com/v1/payments
+    ```
+    
+    Creates a new payment transaction.
+    ````
+    
+    For paths with variables:
+    
+    ````md
+    ## Retrieve a Payment
+    
+    ```http
+    GET https://api.example.com/v1/payments/{payment_id}
+    ```
+    
+    Retrieves the details of a payment that has been previously created.
+    ````
+  </Accordion>
+
+  <Accordion title="Complete Parameter Documentation" icon="list">
+    **Document every parameter exhaustively.**
+    
+    <Warning>
+    The #1 rule of reference documentation: document ALL parameters. Missing parameters make the API impossible to use fully.
+    </Warning>
+    
+    For each parameter, include:
+    
+    | Property | Required | Description |
+    |----------|----------|-------------|
+    | **Name** | Yes | The exact parameter name |
+    | **Type** | Yes | Data type (string, integer, boolean, object, array) |
+    | **Required/Optional** | Yes | Whether the parameter must be included |
+    | **Description** | Yes | What it does and when to use it |
+    | **Valid values** | If limited | Enum values or acceptable range |
+    | **Default value** | If applicable | What happens when omitted |
+    | **Example** | Recommended | Sample value |
+    
+    ````md
+    ### Parameters
+    
+    <ParamField path="amount" type="integer" required>
+      Payment amount in the smallest currency unit (e.g., cents for USD). 
+      Must be a positive integer.
+      
+      Minimum: `50` ($0.50)
+      Maximum: `99999999` ($999,999.99)
+    </ParamField>
+    
+    <ParamField path="currency" type="string" required>
+      Three-letter ISO currency code in lowercase.
+      
+      Supported currencies: `usd`, `eur`, `gbp`, `jpy`, [see full list](/docs/currencies)
+    </ParamField>
+    
+    <ParamField path="capture_method" type="string" default="automatic">
+      When to capture the payment.
+      
+      - `automatic` - Capture immediately (default)
+      - `manual` - Authorize now, capture later
+      
+      Use `manual` for pre-authorization or delayed capture workflows.
+    </ParamField>
+    
+    <ParamField path="metadata" type="object">
+      Set of key-value pairs for storing additional information.
+      
+      Maximum 50 keys, each key up to 40 characters, each value up to 500 characters.
+      
+      ```json
+      {
+        "order_id": "12345",
+        "customer_name": "Jane Doe"
+      }
+      ```
+    </ParamField>
+    ````
+  </Accordion>
+
+  <Accordion title="Request Examples" icon="code">
+    **Provide working, copy-pasteable examples.**
+    
+    Show both the URL syntax and a complete request example.
+    
+    ````md
+    ## Example Request
+    
+    <CodeGroup>
+    ```bash cURL
+    curl https://api.example.com/v1/payments \
+      -X POST \
+      -H "Authorization: Bearer sk_test_abc123" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "amount": 2000,
+        "currency": "usd",
+        "payment_method": "pm_card_visa",
+        "description": "Order #12345"
+      }'
+    ```
+    
+    ```javascript Node.js
+    const payment = await client.payments.create({
+      amount: 2000,
+      currency: 'usd',
+      payment_method: 'pm_card_visa',
+      description: 'Order #12345'
+    });
+    ```
+    
+    ```python Python
+    payment = client.payments.create(
+      amount=2000,
+      currency='usd',
+      payment_method='pm_card_visa',
+      description='Order #12345'
+    )
+    ```
+    </CodeGroup>
+    ````
+    
+    <Tip>
+    Show examples in multiple languages if you support multiple SDKs.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Response Documentation" icon="reply">
+    **Document the response structure completely.**
+    
+    Explain every property that can appear in the response:
+    
+    ````md
+    ## Response
+    
+    Returns a Payment object if successful.
+    
+    <ResponseField name="id" type="string">
+      Unique identifier for the payment.
+      
+      Format: `pay_` followed by 24 alphanumeric characters
+    </ResponseField>
+    
+    <ResponseField name="status" type="string">
+      Current payment status.
+      
+      Possible values:
+      - `pending` - Payment is being processed
+      - `succeeded` - Payment completed successfully
+      - `failed` - Payment failed (see `error` field)
+      - `canceled` - Payment was canceled
+    </ResponseField>
+    
+    <ResponseField name="amount" type="integer">
+      Amount charged in the smallest currency unit.
+    </ResponseField>
+    
+    <ResponseField name="created" type="timestamp">
+      Unix timestamp when the payment was created.
+    </ResponseField>
+    
+    <ResponseField name="metadata" type="object" optional>
+      Additional information attached to the payment.
+      
+      Only present if metadata was provided in the request.
+    </ResponseField>
+    
+    ### Example Response
+    
+    ```json
+    {
+      "id": "pay_1A2B3C4D5E6F7G8H",
+      "object": "payment",
+      "status": "succeeded",
+      "amount": 2000,
+      "currency": "usd",
+      "created": 1640000000,
+      "payment_method": "pm_card_visa",
+      "description": "Order #12345"
+    }
+    ```
+    ````
+    
+    <Warning>
+    Clearly indicate which fields are always present vs. conditionally returned.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Error Documentation" icon="triangle-exclamation">
+    **Explain what can go wrong.**
+    
+    Document common error responses:
+    
+    ````md
+    ## Errors
+    
+    <ResponseField name="error" type="object">
+      Present when the request fails.
+    </ResponseField>
+    
+    ### Common Errors
+    
+    | Status | Error Code | Description |
+    |--------|------------|-------------|
+    | 400 | `invalid_request` | Missing required parameter or invalid value |
+    | 401 | `invalid_api_key` | Authentication failed - check your API key |
+    | 402 | `card_declined` | The card was declined by the issuer |
+    | 404 | `resource_not_found` | The payment ID doesn't exist |
+    | 429 | `rate_limit_exceeded` | Too many requests - slow down |
+    | 500 | `internal_error` | Something went wrong on our end |
+    
+    ### Example Error Response
+    
+    ```json
+    {
+      "error": {
+        "type": "card_error",
+        "code": "card_declined",
+        "message": "Your card was declined.",
+        "param": "payment_method"
+      }
+    }
+    ```
+    ````
+  </Accordion>
+</AccordionGroup>
+
+## Special Reference Topics
+
+These topics should be covered somewhere in your documentation (often in the reference section):
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key">
+    How to authenticate API requests (API keys, OAuth, JWT)
+  </Card>
+  <Card title="Error Handling" icon="circle-exclamation">
+    Complete list of error codes and what they mean
+  </Card>
+  <Card title="Rate Limiting" icon="gauge-high">
+    Request limits and throttling policies
+  </Card>
+  <Card title="Pagination" icon="page">
+    How to paginate through list endpoints
+  </Card>
+  <Card title="Webhooks" icon="webhook">
+    Event types and webhook payload structures
+  </Card>
+  <Card title="Versioning" icon="code-branch">
+    API version policy and how to specify versions
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<Steps>
+  <Step title="Document every parameter">
+    If the API accepts it, document it. Don't force users to discover parameters through trial and error.
+  </Step>
+  
+  <Step title="Be consistent">
+    Use the same format and order for every endpoint. Consistency makes the reference easier to scan.
+  </Step>
+  
+  <Step title="Show what's required vs. optional">
+    Users must know which parameters are mandatory. Mark required fields clearly.
+  </Step>
+  
+  <Step title="Explain when to use each option">
+    If multiple endpoints can accomplish the same goal, explain which to use when.
+  </Step>
+  
+  <Step title="Include URL syntax and examples">
+    Show both the abstract path pattern (`/payments/{id}`) and a concrete example (`/payments/pay_123abc`).
+  </Step>
+  
+  <Step title="Document conditional behaviors">
+    If a field is only returned under certain conditions, say so. (e.g., "Only present when status is 'failed'")
+  </Step>
+  
+  <Step title="Keep it up to date">
+    Reference docs must match the current API. Outdated reference documentation is worse than no documentation.
+  </Step>
+  
+  <Step title="Generate from code when possible">
+    Tools like OpenAPI can auto-generate reference docs from code, reducing manual work and keeping docs in sync.
+  </Step>
+</Steps>
+
+## Template Structure
+
+```md
+# [Resource Name]
+
+## Create a [Resource]
+
+```http
+POST /v1/[resources]
+```
+
+[Description of what this endpoint does]
+
+### Parameters
+
+[Document each parameter with name, type, required/optional, description, valid values]
+
+### Request Example
+
+```[language]
+[Working code example]
+```
+
+### Response
+
+[Document the response structure]
+
+### Example Response
+
+```json
+[Sample response]
+```
+
+### Errors
+
+[Common error codes and messages]
+
+---
+
+## Retrieve a [Resource]
+
+[Continue with next endpoint...]
+```
+
+## Real-World Examples
+
+<CardGroup cols={2}>
+  <Card title="Google Gmail API" icon="google" href="https://developers.google.com/gmail/api/v1/reference">
+    Comprehensive reference with consistent structure, clear parameter documentation, and organized by resource
+  </Card>
+  <Card title="Stripe API" icon="stripe" href="https://stripe.com/docs/api">
+    Gold standard for API reference docs - complete, searchable, with live examples and multiple languages
+  </Card>
+</CardGroup>
+
+## Common Mistakes to Avoid
+
+<Warning>
+Avoid these common reference documentation pitfalls:
+</Warning>
+
+- **Missing parameters** - Users will discover them anyway, often the hard way
+- **Vague descriptions** - "User ID" is not enough; explain what it's for and where to get it
+- **No examples** - Abstract schemas are hard to understand without concrete examples
+- **Ignoring edge cases** - Document what happens with null values, empty arrays, etc.
+- **Inconsistent organization** - Switching between alphabetical and functional organization is confusing
+- **Outdated examples** - Code that doesn't work destroys trust
+- **No error documentation** - Users need to handle errors gracefully
+
+<Info>
+The reference is often the most-visited part of your documentation. Users bookmark specific endpoints and return frequently. Make it comprehensive and easy to navigate.
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Overview Template" icon="map" href="/templates/overview">
+    Provide context about what your API does
+  </Card>
+  <Card title="Quickstart Template" icon="rocket" href="/templates/quickstart">
+    Get users to their first successful API call
+  </Card>
+  <Card title="Setup Template" icon="gear" href="/templates/setup">
+    Authentication and environment configuration
+  </Card>
+</CardGroup>

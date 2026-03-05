@@ -1,0 +1,323 @@
+---
+title: 'User Guide Template'
+description: 'A flexible recipe for creating comprehensive user documentation'
+icon: 'book-open'
+---
+
+## Overview
+
+The User Guide template is more like a recipe—a collection of multiple templates and document types combined into one comprehensive resource. It's a complex document because users expect it to contain everything a user (as opposed to an administrator) might need.
+
+<Note>
+A user guide should be organized by the tasks users want to complete, not by the features or menu structure of your software.
+</Note>
+
+## When to Use This Template
+
+Use the User Guide template when you need to:
+
+- Provide end-to-end documentation for end users
+- Combine getting started, how-to articles, and reference material
+- Cover both primary features and ancillary topics like authentication and account management
+- Create a single resource users can reference throughout their journey
+
+## The Recipe: Three Key Ingredients
+
+<Steps>
+  <Step title="Foundation Guides">
+    Start with these core documents as chapters or sections:
+    
+    - **Overview**: What the software does and who it's for
+    - **Quickstart/Getting Started**: Get users up and running quickly
+    - **Installation**: How to install or access the software (if applicable)
+    
+    These provide the foundation users need before diving into specific tasks.
+  </Step>
+
+  <Step title="How-To Articles">
+    The bulk of your user guide should be a collection of task-oriented how-to articles.
+    
+    <Warning>
+    Organize by user tasks, not software features. Think about what users want to accomplish, not what buttons exist in your UI.
+    </Warning>
+    
+    Examples of task-based organization:
+    - ✅ "Creating Your First Project"
+    - ✅ "Sharing Documents with Your Team"
+    - ✅ "Exporting Data for Analysis"
+    - ❌ "Using the File Menu"
+    - ❌ "The Settings Dialog"
+  </Step>
+
+  <Step title="Ancillary Topics">
+    Cover important supporting topics that users need:
+    
+    - **Authentication**: Logging in, SSO, password management
+    - **Account Management**: Setting up and changing account details
+    - **Managing Groups**: Team organization (from a user perspective)
+    - **Getting Help**: How to contact support, community resources
+    - **Troubleshooting**: Common issues and solutions
+    - **Reference**: CLI usage, keyboard shortcuts, glossary
+  </Step>
+</Steps>
+
+## Template Structure
+
+### Part 1: Foundation (Front Matter)
+
+```markdown
+# Product Name User Guide
+
+## Overview
+Brief introduction to the product, its purpose, and key benefits.
+
+## Who This Guide Is For
+Define your audience: end users, power users, specific roles, etc.
+
+## Getting Started
+
+### System Requirements
+What users need to run the software.
+
+### Installation
+How to install or access the software.
+
+### Your First Steps
+A quickstart guide to get users productive immediately.
+```
+
+### Part 2: Task-Based How-To Articles
+
+Organize by user workflows:
+
+<Accordion title="Example: Project Management Software">
+```markdown
+## Working with Projects
+
+### Creating a New Project
+Step-by-step instructions...
+
+### Adding Team Members
+Step-by-step instructions...
+
+### Setting Project Milestones
+Step-by-step instructions...
+
+## Managing Tasks
+
+### Creating and Assigning Tasks
+Step-by-step instructions...
+
+### Tracking Progress
+Step-by-step instructions...
+
+### Using Task Templates
+Step-by-step instructions...
+
+## Collaboration
+
+### Sharing Files
+Step-by-step instructions...
+
+### Commenting and Feedback
+Step-by-step instructions...
+
+### Real-Time Collaboration
+Step-by-step instructions...
+```
+</Accordion>
+
+### Part 3: Ancillary Content
+
+```markdown
+## Your Account
+
+### Managing Your Profile
+### Changing Your Password
+### Notification Preferences
+### Privacy Settings
+
+## Authentication
+
+### Logging In
+### Using Single Sign-On (SSO)
+### Two-Factor Authentication
+### Managing Sessions
+
+## Getting Help
+
+### Troubleshooting Common Issues
+### Contacting Support
+### Community Forums
+### Training Resources
+
+## Reference
+
+### Keyboard Shortcuts
+### CLI Commands
+### Glossary of Terms
+### FAQ
+```
+
+## Practical Example
+
+Here's a well-structured how-to article:
+
+```markdown
+## Exporting Your Data
+
+You can export your project data in multiple formats for analysis, backup, or migration.
+
+### Before You Begin
+
+<Note>
+You need **Editor** or **Admin** permissions to export project data.
+</Note>
+
+**What you'll need:**
+- Access to the project you want to export
+- Sufficient storage space (exports can be large)
+
+### Export Your Data
+
+<Steps>
+  <Step title="Open the project">
+    Navigate to the project you want to export from your dashboard.
+  </Step>
+
+  <Step title="Access export options">
+    Click the **⋮** menu in the top right and select **Export Data**.
+  </Step>
+
+  <Step title="Choose your format">
+    Select from available formats:
+    - **CSV**: Best for spreadsheet analysis
+    - **JSON**: Best for programmatic use
+    - **PDF**: Best for sharing and printing
+  </Step>
+
+  <Step title="Configure export settings">
+    Choose what to include:
+    - ☑ Tasks and subtasks
+    - ☑ Comments
+    - ☑ File attachments
+    - ☑ Activity history
+  </Step>
+
+  <Step title="Download">
+    Click **Export** and wait for the download to begin. Large exports may take a few minutes.
+  </Step>
+</Steps>
+
+### What's Included in the Export
+
+Your export will contain:
+- All tasks with their current status
+- Comments and conversation threads
+- User assignments and timestamps
+- File attachments (if selected)
+
+<Warning>
+Exported files may contain sensitive information. Handle them securely.
+</Warning>
+
+### Troubleshooting
+
+**Export is taking too long**
+- Large projects may take 5-10 minutes
+- Try exporting without file attachments for faster processing
+
+**Download failed**
+- Check your internet connection
+- Try a different browser
+- Contact support if the issue persists
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="User-Focused Language" icon="user">
+    Write in second person ("you"). Use language your users use, not internal jargon.
+  </Card>
+  
+  <Card title="Progressive Disclosure" icon="layer-group">
+    Start with basics, then layer in advanced topics. Use expandable sections for optional details.
+  </Card>
+  
+  <Card title="Visual Aids" icon="image">
+    Include screenshots, diagrams, and videos. Show, don't just tell.
+  </Card>
+  
+  <Card title="Keep It Current" icon="rotate">
+    User guides need regular updates. Review after each product release.
+  </Card>
+</CardGroup>
+
+## Content Organization Tips
+
+<Accordion title="Group by user goals, not features">
+Ask yourself: "What is the user trying to accomplish?" not "What features do we have?"
+
+**Good organization:**
+- Getting Started
+- Creating Content
+- Collaborating with Others
+- Publishing and Sharing
+- Analyzing Results
+
+**Poor organization:**
+- The Dashboard
+- The Editor
+- The Settings Panel
+- The Reports Section
+</Accordion>
+
+<Accordion title="Use consistent formatting">
+- Always structure how-to articles the same way
+- Use the same components for the same purposes
+- Create templates for common article types
+- Maintain a style guide
+</Accordion>
+
+<Accordion title="Make it scannable">
+- Use clear headings and subheadings
+- Break up long paragraphs
+- Use bulleted lists for multiple items
+- Highlight important information with callouts
+- Add a table of contents for long pages
+</Accordion>
+
+<Accordion title="Link related content">
+- Add "See also" sections
+- Link to prerequisite articles
+- Point to reference documentation
+- Create a logical flow between articles
+</Accordion>
+
+## Making Your User Guide Searchable
+
+```markdown
+### Common Search Optimization Techniques
+
+1. **Use natural language**: Write like your users search
+   - Include questions: "How do I reset my password?"
+   - Use common phrases: "I can't log in"
+
+2. **Include synonyms**: Users may use different terms
+   - Document both "remove" and "delete"
+   - Cover "avatar" and "profile picture"
+
+3. **Add metadata**: Help search engines categorize
+   - Use descriptive titles
+   - Write clear descriptions
+   - Add relevant tags
+
+4. **Test your search**: Use your own search function
+   - Try common user queries
+   - Improve based on analytics
+   - Monitor what users search for
+```
+
+<Note>
+A well-organized user guide reduces support tickets and improves user satisfaction. Invest time in getting the structure right.
+</Note>

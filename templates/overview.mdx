@@ -1,0 +1,276 @@
+---
+title: Overview Template
+description: Help potential users understand what your API does and whether it fits their needs
+icon: 'map'
+---
+
+# API Overview Template
+
+The Overview is your API's elevator pitch. It helps potential users—whether they're engineers evaluating technical fit or managers making business decisions—understand what your API does and whether it's right for them.
+
+<Note>
+Users will decide whether to adopt your API based on this document. Make sure it answers their key questions clearly and concisely.
+</Note>
+
+## When to Use This Template
+
+Use this template when you need to:
+- Introduce a new API or major version
+- Help users understand your API's purpose and capabilities
+- Explain the problems your API solves
+- Set expectations about what the API can and cannot do
+- Provide context before users dive into quickstarts and reference docs
+
+## What to Include
+
+<AccordionGroup>
+  <Accordion title="Purpose & Problem Statement" icon="bullseye">
+    **What problem does your API solve, and for whom?**
+    
+    Clearly state the pain point your API addresses and who benefits from using it. Engineers need to know if your API solves their specific problem.
+    
+    ```md
+    ## What is the Payment Processing API?
+    
+    The Payment Processing API enables developers to accept payments from customers worldwide without building payment infrastructure from scratch. It's designed for e-commerce platforms, SaaS applications, and marketplaces that need reliable, secure payment processing.
+    ```
+  </Accordion>
+
+  <Accordion title="Core Capabilities" icon="list-check">
+    **What exact capabilities are available?**
+    
+    List the specific services and operations your API provides. Be concrete—avoid marketing speak.
+    
+    ```md
+    ## Core Features
+    
+    - Process credit card, debit card, and digital wallet payments
+    - Handle recurring subscriptions and billing
+    - Manage refunds and disputes
+    - Support 135+ currencies and multiple payment methods
+    - Real-time fraud detection and prevention
+    ```
+  </Accordion>
+
+  <Accordion title="Limitations & Constraints" icon="triangle-exclamation">
+    **What does your API NOT do?**
+    
+    Setting clear expectations prevents frustration later. Tell users what's out of scope.
+    
+    <Warning>
+    Don't bury limitations in fine print. Users appreciate honesty upfront.
+    </Warning>
+    
+    ```md
+    ## Limitations
+    
+    - Does not handle inventory management or shipping logistics
+    - Maximum transaction size: $50,000 USD
+    - Batch processing not available (all operations are real-time)
+    - Does not store full credit card numbers (PCI compliance)
+    ```
+  </Accordion>
+
+  <Accordion title="Prerequisites & Requirements" icon="clipboard-check">
+    **What knowledge or setup is required before starting?**
+    
+    Help users determine if they're ready to use your API.
+    
+    ```md
+    ## Prerequisites
+    
+    Before using this API, you should:
+    - Have basic knowledge of RESTful APIs and HTTP requests
+    - Understand OAuth 2.0 authentication
+    - Have a verified business account with our platform
+    - Be familiar with webhook handling for asynchronous events
+    ```
+  </Accordion>
+
+  <Accordion title="Use Cases & Examples" icon="lightbulb">
+    **Who is using your API and for what?**
+    
+    Real-world examples help users see themselves using your API.
+    
+    ```md
+    ## Typical Use Cases
+    
+    - **E-commerce platforms**: Process one-time purchases and manage checkout flows
+    - **SaaS companies**: Handle recurring subscription billing and automatic renewals
+    - **Marketplaces**: Split payments between multiple sellers automatically
+    - **Mobile apps**: Enable in-app purchases with minimal integration code
+    ```
+  </Accordion>
+
+  <Accordion title="Implementation Effort" icon="clock">
+    **How much work is required to integrate?**
+    
+    Be realistic about the implementation timeline and complexity.
+    
+    ```md
+    ## Implementation Time
+    
+    - **Basic integration**: 2-4 hours for a simple checkout flow
+    - **Advanced features**: 1-2 weeks for subscription billing with webhooks
+    - **Production-ready**: Plan for 2-3 weeks including testing and compliance review
+    ```
+  </Accordion>
+
+  <Accordion title="Architecture & How It Works" icon="diagram-project">
+    **What do users need to know about the internals?**
+    
+    Provide enough architectural detail for users to understand how the system works.
+    
+    ```md
+    ## How It Works
+    
+    The API follows a simple request-response pattern:
+    
+    1. Your application sends payment details to our API endpoint
+    2. We tokenize sensitive data and process the transaction
+    3. Payment networks (Visa, Mastercard, etc.) authorize or decline
+    4. We return the result synchronously and send webhooks for updates
+    
+    Built on industry-standard protocols:
+    - REST API with JSON payloads
+    - TLS 1.3 for transport security
+    - Idempotency keys for safe retries
+    - Rate limiting: 100 requests per second per API key
+    ```
+  </Accordion>
+
+  <Accordion title="High-Level Workflow" icon="sitemap">
+    **What's the typical process for using your API?**
+    
+    Describe the general workflow without going into step-by-step detail (save that for the quickstart).
+    
+    ```md
+    ## Typical Workflow
+    
+    <Steps>
+      <Step title="Setup">
+        Create an account, generate API keys, and configure webhook endpoints
+      </Step>
+      <Step title="Test in Sandbox">
+        Use test credentials to process payments in our sandbox environment
+      </Step>
+      <Step title="Integrate Payment Flow">
+        Add API calls to your checkout process to create and process payments
+      </Step>
+      <Step title="Handle Webhooks">
+        Implement webhook handlers for asynchronous events (refunds, disputes, etc.)
+      </Step>
+      <Step title="Go Live">
+        Switch to production API keys after testing and compliance review
+      </Step>
+    </Steps>
+    ```
+  </Accordion>
+
+  <Accordion title="Resources & Documentation" icon="book">
+    **Where can users find more information?**
+    
+    Point users to related documentation and resources.
+    
+    ```md
+    ## Documentation & Resources
+    
+    - **[Quickstart Guide](/quickstart)**: Get up and running in 15 minutes
+    - **[API Reference](/reference)**: Complete endpoint documentation
+    - **[Authentication Guide](/setup/authentication)**: How to obtain and use API keys
+    - **[Code Examples](https://github.com/yourorg/examples)**: Sample integrations in 8+ languages
+    - **[Status Page](https://status.yourapi.com)**: Real-time API health and uptime
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Template Structure
+
+```md
+# [Your API Name] Overview
+
+## What is [Your API]?
+
+[Brief description of what the API does and what problem it solves]
+
+## Who Should Use This API?
+
+[Target audience and use cases]
+
+## Core Capabilities
+
+[List of main features and what users can do]
+
+## Limitations
+
+[What the API doesn't do - set clear expectations]
+
+## Prerequisites
+
+[Required knowledge, accounts, or setup before starting]
+
+## How It Works
+
+[High-level architecture and technical approach]
+
+## Typical Workflow
+
+[General process for using the API - not step-by-step]
+
+## Implementation Effort
+
+[Realistic time estimates for different integration scenarios]
+
+## Next Steps
+
+[Links to quickstart, setup guide, and reference docs]
+```
+
+## Real-World Examples
+
+<CardGroup cols={2}>
+  <Card title="Chrome Native Client" icon="chrome" href="https://developer.chrome.com/native-client/overview">
+    Excellent example explaining an engine that allows C++ to run in the browser, including why it's valuable for porting desktop apps to web
+  </Card>
+  <Card title="Jira Platform" icon="jira" href="https://www.atlassian.com/software/jira/guides/getting-started/overview#about-the-jira-platform">
+    Strong overview covering multiple products, use cases, third-party integrations, hosting options, and licensing
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<Steps>
+  <Step title="Answer user questions proactively">
+    Don't make users hunt for basic information. Anticipate questions about pricing, limits, support, and compatibility.
+  </Step>
+  <Step title="Be honest about limitations">
+    Users will discover limitations eventually. It's better to be upfront than have frustrated users later.
+  </Step>
+  <Step title="Use concrete examples">
+    Replace vague statements like "flexible integration" with specific use cases and real-world scenarios.
+  </Step>
+  <Step title="Keep it concise">
+    The overview should be scannable. Save detailed explanations for dedicated guide pages.
+  </Step>
+  <Step title="Get input from field engineers and PMs">
+    They know what questions prospects ask repeatedly. Use their insights to strengthen your overview.
+  </Step>
+</Steps>
+
+<Info>
+The overview is often the first technical content a potential user reads. Make it count by being clear, honest, and helpful.
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart Template" icon="rocket" href="/templates/quickstart">
+    Get users to their first successful API call
+  </Card>
+  <Card title="Setup Template" icon="gear" href="/templates/setup">
+    Guide users through authentication and environment configuration
+  </Card>
+  <Card title="Reference Template" icon="book" href="/templates/reference">
+    Document every endpoint exhaustively
+  </Card>
+</CardGroup>

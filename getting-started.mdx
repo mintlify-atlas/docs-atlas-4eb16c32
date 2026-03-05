@@ -1,0 +1,405 @@
+---
+title: Getting Started
+description: Learn how to choose, adapt, and use the Doc Templates for your project
+---
+
+# Getting Started with Doc Templates
+
+This guide will walk you through using the Doc Templates to create effective documentation for your software project. Whether you're building an API, a CLI tool, or a web application, these templates provide proven structures that help users learn and adopt your product faster.
+
+## Choose Your Templates
+
+Start by identifying which templates you need based on your project type and user needs.
+
+<Steps>
+  <Step title="Identify your documentation goals">
+    Ask yourself:
+    - Who is your primary audience? (Engineers, managers, end users, system administrators?)
+    - What do users need to accomplish with your documentation?
+    - What questions are potential users asking before they adopt your product?
+    
+    <Tip>
+    Most software projects need at least three core documents: **Overview**, **Quickstart**, and **Reference**.
+    </Tip>
+  </Step>
+
+  <Step title="Match templates to your needs">
+    <CardGroup cols={2}>
+      <Card title="Overview Template" icon="map" href="/templates/overview">
+        **Use when:** Users need to evaluate whether your product fits their needs
+        
+        **Best for:** Decision-makers and engineers sizing up your API or service
+      </Card>
+      
+      <Card title="Quickstart Template" icon="rocket" href="/templates/quickstart">
+        **Use when:** Users need to see results quickly to understand your product's value
+        
+        **Best for:** New users making their first API call or completing a basic workflow
+      </Card>
+      
+      <Card title="Reference Template" icon="book" href="/templates/reference">
+        **Use when:** Users need complete details about every endpoint, parameter, and response
+        
+        **Best for:** Engineers integrating your API into production systems
+      </Card>
+      
+      <Card title="Administration Guide" icon="shield" href="/templates/administration">
+        **Use when:** System administrators need to install, configure, and manage your software
+        
+        **Best for:** Enterprise deployments requiring setup, monitoring, and maintenance
+      </Card>
+    </CardGroup>
+  </Step>
+
+  <Step title="Check template status">
+    <Note>
+    **Ready to use:** Overview, Quickstart, and Reference templates are complete and production-ready.
+    
+    **Work in progress:** Setup and other templates are still being developed.
+    </Note>
+  </Step>
+</Steps>
+
+## Adapt Templates to Your Project
+
+Each template provides a structure, but you'll need to customize it for your specific product. Here's how to make templates work for your project.
+
+### Understanding Template Sections
+
+Every template includes guidance on:
+
+- **Purpose**: Why this document exists and what problem it solves
+- **Content requirements**: What information must be included
+- **Structure**: How to organize the content
+- **What NOT to include**: Common mistakes to avoid
+
+<Warning>
+Don't just fill in blanks. Read the template's guidance carefully to understand the reasoning behind each section. This helps you make informed decisions about what to include or adapt.
+</Warning>
+
+### Customization Workflow
+
+<Steps>
+  <Step title="Read the entire template first">
+    Before writing anything, read through the complete template to understand:
+    - The overall structure and flow
+    - Which sections apply to your project
+    - What examples are provided
+    
+    Templates include notes explaining why each section matters and when you might need to adapt it.
+  </Step>
+
+  <Step title="Gather your content">
+    Collect the information you'll need:
+    
+    **For Overview:**
+    - What problem your product solves
+    - Key capabilities and limitations
+    - Typical use cases
+    - Prerequisites users need to know
+    
+    **For Quickstart:**
+    - The simplest workflow that demonstrates value
+    - Working code examples users can copy
+    - Prerequisites (API keys, authentication)
+    - Expected results users should see
+    
+    **For Reference:**
+    - Complete list of all endpoints/operations
+    - Every parameter with data types
+    - Example requests and responses
+    - Error codes and meanings
+  </Step>
+
+  <Step title="Write for your specific audience">
+    Adapt the language and depth based on who will read your docs:
+    
+    ```markdown Example: Technical depth
+    # Too generic
+    "This API provides data processing capabilities."
+    
+    # Project-specific and concrete
+    "The Transactions API lets you process credit card payments, 
+    issue refunds, and query transaction history in real-time."
+    ```
+    
+    Consider:
+    - What your audience already knows (don't explain REST to API engineers)
+    - What they need to learn (do explain your specific authentication flow)
+    - Industry-specific terminology they expect
+  </Step>
+
+  <Step title="Replace generic examples with real code">
+    Every template emphasizes working examples. Users should be able to copy your code and see it work.
+    
+    ```javascript Good example
+    // Create a new user account
+    const response = await fetch('https://api.example.com/users', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: 'user@example.com',
+        name: 'Jane Developer'
+      })
+    });
+    
+    const user = await response.json();
+    console.log(`Created user: ${user.id}`);
+    ```
+    
+    <Tip>
+    Include comments that explain what the code does, especially for complex operations. This helps newcomers understand your API's patterns.
+    </Tip>
+  </Step>
+
+  <Step title="Remove sections that don't apply">
+    Not every section of every template will fit your project. That's expected.
+    
+    **It's better to omit a section than to include vague filler content.**
+    
+    For example:
+    - If your API doesn't require special setup, you might not need a separate Setup guide
+    - If you only have 5 endpoints, you might combine Overview and Reference
+    - If authentication is standard OAuth, link to OAuth docs instead of rewriting them
+  </Step>
+</Steps>
+
+## Best Practices for Using Templates
+
+### Keep Content Focused
+
+Each document type has a specific purpose. Resist the temptation to combine everything into one massive document.
+
+<CardGroup cols={2}>
+  <Card title="Overview" icon="map">
+    Answers "What is this and should I use it?"
+    
+    ❌ Don't include: Step-by-step instructions, complete parameter lists
+    
+    ✅ Do include: Capabilities, use cases, high-level workflow
+  </Card>
+  
+  <Card title="Quickstart" icon="rocket">
+    Answers "How do I get started quickly?"
+    
+    ❌ Don't include: Every possible option, production optimization, edge cases
+    
+    ✅ Do include: Simplest path to success, working examples, immediate results
+  </Card>
+  
+  <Card title="Reference" icon="book">
+    Answers "What are the exact details?"
+    
+    ❌ Don't include: Tutorials, explanations of when to use features
+    
+    ✅ Do include: Every parameter, all data types, complete examples
+  </Card>
+  
+  <Card title="Administration" icon="shield">
+    Answers "How do I deploy and manage this?"
+    
+    ❌ Don't include: End-user features, development tutorials
+    
+    ✅ Do include: Installation, configuration, monitoring, troubleshooting
+  </Card>
+</CardGroup>
+
+### Link Between Documents
+
+Users will read multiple documents as they learn your product. Make navigation easy:
+
+```markdown Example: Cross-linking
+In your Quickstart:
+"Before starting, review the [authentication guide](#) to get your API key."
+
+In your Overview:
+"Ready to try it? Follow the [quickstart guide](#) for your first API call."
+
+In your Reference:
+"For a working example, see the [quickstart](#). For concepts, see the [overview](#)."
+```
+
+### Maintain Consistency
+
+<Steps>
+  <Step title="Use consistent terminology">
+    Choose one term and stick with it throughout all documents:
+    - "endpoint" or "operation" (not both)
+    - "parameter" or "argument"
+    - "member" or "user"
+  </Step>
+
+  <Step title="Follow the same structure in Reference entries">
+    Each endpoint should follow the same pattern:
+    1. HTTP method and URL
+    2. Description
+    3. Parameters (in consistent order)
+    4. Example request
+    5. Example response
+    6. Response properties
+    
+    ```markdown Structure example
+    ## GET /users/{user_id}
+    
+    Retrieves details for a specific user account.
+    
+    ### Parameters
+    
+    | Name    | Type   | Required | Description |
+    |---------|--------|----------|-------------|
+    | user_id | string | Yes      | Unique ID   |
+    
+    ### Example Request
+    
+    [code example]
+    
+    ### Example Response
+    
+    [response example]
+    ```
+  </Step>
+
+  <Step title="Keep code examples in the same language">
+    Unless you're explicitly providing multi-language examples, stick with one language throughout the documentation. Switching between JavaScript, Python, and cURL randomly confuses users.
+  </Step>
+</Steps>
+
+## After You Fill In a Template
+
+Creating the document is just the beginning. Here's what to do next:
+
+<Steps>
+  <Step title="Test your examples">
+    Every code example should actually work. Run each one to verify:
+    
+    - API requests return expected responses
+    - Error handling works as documented
+    - Authentication examples are current
+    - URLs and endpoints are correct
+    
+    <Warning>
+    Nothing erodes trust faster than examples that don't work. Test everything.
+    </Warning>
+  </Step>
+
+  <Step title="Get feedback from actual users">
+    Ask someone from your target audience to follow your documentation:
+    
+    - Can a new engineer complete the Quickstart without asking questions?
+    - Does the Overview answer the questions evaluators actually have?
+    - Can someone find the parameter they need in the Reference?
+    
+    Watch where they get stuck or confused. Those are the sections that need improvement.
+  </Step>
+
+  <Step title="Link documents together">
+    Create a logical reading path:
+    
+    1. **Overview** → explains what the product does
+    2. **Quickstart** → shows how to use it
+    3. **Reference** → provides complete details
+    4. **Administration** → covers deployment and management
+    
+    Each document should link to the next logical step in the user's journey.
+  </Step>
+
+  <Step title="Keep documentation updated">
+    Plan to update documentation when you:
+    
+    - Add new features or endpoints
+    - Change parameter requirements
+    - Deprecate functionality
+    - Fix bugs that affect documented behavior
+    - Receive questions that reveal gaps
+    
+    <Tip>
+    Include documentation updates in your definition of done for new features. If the feature isn't documented, it's not really complete.
+    </Tip>
+  </Step>
+
+  <Step title="Monitor and iterate">
+    Pay attention to:
+    
+    - Support questions that could be answered by documentation
+    - Analytics showing which pages users visit most
+    - Search queries that don't find answers
+    - User feedback and feature requests
+    
+    Use these signals to improve your documentation over time.
+  </Step>
+</Steps>
+
+## Common Pitfalls to Avoid
+
+<AccordionGroup>
+  <Accordion title="Writing documentation from your perspective instead of the user's">
+    **Problem:** You know how the system works internally, so you document it that way. Users don't care about your internal architecture—they care about solving their problems.
+    
+    **Solution:** Start with user goals and tasks. Organize documentation around what users need to accomplish, not how your code is structured.
+  </Accordion>
+
+  <Accordion title="Assuming knowledge your users don't have">
+    **Problem:** You skip explaining concepts that seem obvious to you because you work with them daily.
+    
+    **Solution:** The Overview template specifically asks you to identify prerequisites. Make these explicit. Link to external resources when needed.
+  </Accordion>
+
+  <Accordion title="Mixing document types">
+    **Problem:** Your Quickstart includes exhaustive parameter lists. Your Reference has tutorial-style explanations. Everything feels overwhelming.
+    
+    **Solution:** Keep documents focused on their primary purpose. Use the template guidance to know what belongs where, and link between documents for related content.
+  </Accordion>
+
+  <Accordion title="Creating examples that don't work">
+    **Problem:** Code examples are conceptual, incomplete, or outdated. Users copy them and get errors.
+    
+    **Solution:** Test every example. Use real API keys (that you rotate afterward) to verify everything works. Include expected output.
+  </Accordion>
+
+  <Accordion title="Not explaining the 'why'">
+    **Problem:** You document what each parameter does, but not when or why users would use it.
+    
+    **Solution:** For parameters with multiple options, explain which option applies to which situation. Help users make informed decisions.
+  </Accordion>
+</AccordionGroup>
+
+## Examples and References
+
+Each template includes links to excellent real-world examples. Study these to see how successful projects implement these patterns:
+
+- **Jekyll** (Quickstart): Clean, focused quickstart that gets users to success quickly
+- **GitHub API** (Quickstart collection): Multiple quickstarts for different use cases
+- **Chrome Native Client** (Overview): Explains complex technology and its value proposition
+- **Jira Platform** (Overview): Comprehensive overview of multiple products and use cases
+- **Google Gmail API** (Reference): Exhaustive, consistent reference documentation
+
+<Info>
+Visit the individual template pages to see these examples and learn what makes them effective.
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Overview Template" icon="map" href="/templates/overview">
+    Start here to help users understand what your product does
+  </Card>
+  
+  <Card title="Quickstart Template" icon="rocket" href="/templates/quickstart">
+    Get users to their first success quickly
+  </Card>
+  
+  <Card title="Reference Template" icon="book" href="/templates/reference">
+    Document every detail of your API
+  </Card>
+  
+  <Card title="Meta-Template" icon="template" href="/meta-template">
+    Understand the framework behind these templates
+  </Card>
+</CardGroup>
+
+## Need More Help?
+
+If you need additional guidance on using these templates, please [open an issue](https://github.com/doc-templates/doc-templates/issues) describing what would help you get started. Your feedback makes these templates better for everyone.
