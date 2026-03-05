@@ -1,0 +1,63 @@
+{
+  "projectType": "general",
+  "projectName": "Doc Templates",
+  "projectDescription": "A collection of templates and best practices for creating comprehensive software documentation.",
+  "theme": "linden",
+  "primaryColor": "#2E5266",
+  "lightColor": "#6E8898",
+  "darkColor": "#1B3240",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "introduction",
+          "getting-started"
+        ]
+      },
+      {
+        "group": "API Documentation Templates",
+        "pages": [
+          "templates/overview",
+          "templates/quickstart",
+          "templates/reference",
+          "templates/setup"
+        ]
+      },
+      {
+        "group": "Other Templates",
+        "pages": [
+          "templates/administration",
+          "templates/user-guide",
+          "templates/integrations",
+          "templates/readme"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          "meta-template",
+          "contributing"
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Ready-to-use templates for API documentation (Overview, Quickstart, Reference, Setup)",
+    "Administration and user guide templates",
+    "Integration and plugin documentation templates",
+    "Meta-template for creating new documentation templates",
+    "Best practices and examples from industry-leading documentation"
+  ],
+  "publicApiSurface": [
+    "Overview template - explains what the product does and doesn't do",
+    "Quickstart template - step-by-step guide to get started quickly",
+    "Reference template - exhaustive API endpoint documentation",
+    "Setup template - installation and configuration guide",
+    "Administration template - guide for system administrators",
+    "User Guide template - comprehensive end-user documentation",
+    "Integrations template - plugin and integration documentation",
+    "README template - repository README structure",
+    "Meta-template - framework for creating new templates"
+  ]
+}
